@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Quote } from './components/Quote';
+import Navbar from './components/NavBar';
+import FavoriteQuotes from './components/FavoriteQuotes';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import { GlobalProvider } from './context/GlobalState';
+import { TopBar } from './components/TopBar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalProvider>
+      <Router>
+        <div className="App">
+          <TopBar />
+          <Switch>
+            <Route exact path="/" component={Quote} />
+            <Route path="/favorite" component={FavoriteQuotes} />
+          </Switch>
+          <Navbar />
+        </div>
+      </Router>
+    </GlobalProvider>
   );
 }
 
