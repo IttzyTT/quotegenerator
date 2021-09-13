@@ -53,6 +53,7 @@ export const Quote = () => {
           onClick={() => {
             addFavorite(quotes);
             likeHandler();
+            fetchQuote();
           }}
         >
           {!likeToggle ? (
